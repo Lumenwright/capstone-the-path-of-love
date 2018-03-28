@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34176784ea8d9174c94be554ee38bb03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileType: open
+  tileType: cross
 --- !u!23 &685145132
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -370,7 +370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34176784ea8d9174c94be554ee38bb03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileType: cross
+  tileType: straight
 --- !u!1001 &1120513045
 Prefab:
   m_ObjectHideFlags: 0
@@ -428,6 +428,7 @@ GameObject:
   - component: {fileID: 1135563842}
   - component: {fileID: 1135563841}
   - component: {fileID: 1135563840}
+  - component: {fileID: 1135563844}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -498,6 +499,22 @@ Transform:
   m_Father: {fileID: 1862097886}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1135563844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1135563839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb5dd43baba2d4dc1bab789615567e3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drawDebugRays: 0
+  raycasterEventMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  maxRaycastHits: 64
 --- !u!1 &1347871580
 GameObject:
   m_ObjectHideFlags: 0
@@ -607,6 +624,7 @@ GameObject:
   - component: {fileID: 1563587206}
   - component: {fileID: 1563587205}
   - component: {fileID: 1563587209}
+  - component: {fileID: 1563587210}
   m_Layer: 0
   m_Name: OpenTile
   m_TagString: Untagged
@@ -692,6 +710,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileType: open
+--- !u!114 &1563587210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1563587204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1838933443}
+          m_MethodName: SetTile
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 1563587209}
+            m_ObjectArgumentAssemblyTypeName: Tile, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!1 &1657911082
 GameObject:
   m_ObjectHideFlags: 0
@@ -788,7 +836,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34176784ea8d9174c94be554ee38bb03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileType: cross
+  tileType: corner
 --- !u!1 &1838933441
 GameObject:
   m_ObjectHideFlags: 0
@@ -834,8 +882,12 @@ MonoBehaviour:
   cross: {fileID: 685145131}
   open: {fileID: 1563587209}
   start: {fileID: 1347871585}
+  currentTile: {fileID: 0}
   nextTile: []
   numberInPool: 10
+  cornerTiles: []
+  straightTiles: []
+  crossTiles: []
   numberOfOpen: 4
 --- !u!1001 &1862097885
 Prefab:
@@ -850,7 +902,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 498412, guid: 970dd4b9371394fb4890965f608d46fd, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.54
       objectReference: {fileID: 0}
     - target: {fileID: 498412, guid: 970dd4b9371394fb4890965f608d46fd, type: 2}
       propertyPath: m_LocalPosition.z

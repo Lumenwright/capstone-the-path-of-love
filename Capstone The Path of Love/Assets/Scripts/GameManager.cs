@@ -11,12 +11,13 @@ public class GameManager : MonoBehaviour {
 	public Tile open;
 
 	public Tile start;
+	public Tile currentTile;
 	public List<Tile> nextTile;
 
 	public int numberInPool = 10;
-	List<Tile> cornerTiles; // pool of tiles
-	List<Tile> straightTiles;
-	List<Tile> crossTiles;
+	public List<Tile> cornerTiles; // pool of tiles
+	public List<Tile> straightTiles;
+	public List<Tile> crossTiles;
 
 	// placeholder tiles
 	public int numberOfOpen = 4;
@@ -55,36 +56,69 @@ public class GameManager : MonoBehaviour {
 		}
 
 		// For beginning tile show active edges
-		nextTile = openTiles; 
-		showTilePlace(nextTile, start);
+		showTilePlaces(start);
 	}
 		
-	public void showTilePlace (List<Tile> nextTileType, Tile currTile){
+	public void showTilePlaces (Tile currTile){
 		// show possible positions of next tile based on current tile type
+		Debug.Log("Current tile shown:"+currTile.tileType);
 
-		Vector3 north = currTile.transform.forward*tileSize;
-		Vector3 south = -1f * north;
-		Vector3 east = currTile.transform.position + new Vector3 (tileSize, 0f, 0f);
-		Vector3 west = -1f * east;
+		// written so that the positions are in respect to the current rotation
+		Vector3 north = currTile.transform.position + tileSize*currTile.transform.forward;
+		Vector3 south = currTile.transform.position - tileSize*currTile.transform.forward;
+		Vector3 east = currTile.transform.position + tileSize*transform.TransformPoint(Vector3.right);
+		Vector3 west = currTile.transform.position + tileSize*transform.TransformPoint(Vector3.left);
 
+		// start tile has 4 open edges
 		if (currTile.tileType == "start") {
-			MakeTile(nextTileType, north);
-			MakeTile(nextTileType, south);
-			MakeTile(nextTileType, east);
-			MakeTile(nextTileType, west);
+			MakeTile(openTiles, north);
+			MakeTile(openTiles, south);
+			MakeTile(openTiles, east);
+			MakeTile(openTiles, west);
 		}
+
+		// straight tile has 1 open edge
+		// chose a random edge and rotation will make sure that it is free
+		if (currTile.tileType == "straight") {
+			MakeTile (openTiles, north);
+		}
+
+		// corner tile has 2 possible open edges
+		// but only one of them is open at a time.
+		// for now have two edges
+		if (currTile.tileType == "corner") {
+			MakeTile (openTiles, west);
+			MakeTile (openTiles, south);
+		}
+	}
+
+
+	public void SetTile (Tile tileClicked){
+		// only applies to open tiles
+		// set the next tile into the clicked position
+		//get next generated tile here TBD
+		List<Tile> nextTiles = cornerTiles;
+		MakeTile(nextTiles, tileClicked.transform.position);
+		tileClicked.gameObject.SetActive (false); // must be before showTilePlaces so there will be tiles in the pool
+		showTilePlaces (currentTile);
 	}
 
 	public void MakeTile (List<Tile> tileList, Vector3 tilePosition){
 		// Get the next tile object from its list
 		for (int i = 0; i < tileList.Count; i++) {
 			if (!tileList [i].gameObject.activeInHierarchy) {
+				
 				tileList [i].transform.position = tilePosition;
+				tileList [i].transform.rotation = Quaternion.identity;
 				tileList [i].gameObject.SetActive(true);
+
+				currentTile = tileList [i];
+
 				break;
 			}
 		}
 	}
 
+	// generate next tile
 }
 	

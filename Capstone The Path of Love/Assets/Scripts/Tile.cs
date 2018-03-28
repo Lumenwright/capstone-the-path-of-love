@@ -10,4 +10,5 @@ public class Tile : MonoBehaviour {
 		// set tile type to "corner", "straight", "cross", or "open"
 		tileType = tt;
 	}
+
 }

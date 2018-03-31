@@ -883,12 +883,15 @@ MonoBehaviour:
   open: {fileID: 1563587209}
   start: {fileID: 1347871585}
   currentTile: {fileID: 0}
-  nextTile: []
+  nextTiles: []
+  prevTile: {fileID: 0}
   numberInPool: 10
-  cornerTiles: []
-  straightTiles: []
-  crossTiles: []
   numberOfOpen: 4
+  tileSize: 1
+  north: {x: 0, y: 0, z: 0}
+  south: {x: 0, y: 0, z: 0}
+  east: {x: 0, y: 0, z: 0}
+  west: {x: 0, y: 0, z: 0}
 --- !u!1001 &1862097885
 Prefab:
   m_ObjectHideFlags: 0

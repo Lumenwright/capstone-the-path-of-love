@@ -13,8 +13,11 @@ ModelImporter:
     400004: //RootNode
     2000000: Camera
     2300000: Plane
+    2300002: //RootNode
     3300000: Plane
+    3300002: //RootNode
     4300000: Plane
+    4300002: Plane.001
   externalObjects:
   - first:
       type: UnityEngine:Material

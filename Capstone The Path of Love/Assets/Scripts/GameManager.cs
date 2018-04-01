@@ -1,16 +1,17 @@
 ﻿// =============================================
 // Notes
 // - Current tile will always be last placed tile regardless of where the player is
-// - had to put in positions around tile in the function not in the Tile class to work (won't get correct position until after the function is done)
+// - had to put in positions around tile in the function, not in the Tile class, to work (won't get correct position until after the function is done)
 // =============================================
 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
-	// play tiles
+	//-----play tiles----------------------------
 	public Tile corner;
 	public Tile straight;
 	public Tile cross;
@@ -22,23 +23,34 @@ public class GameManager : MonoBehaviour {
 	public Tile prevTile;
 	public Tile lastOpenTile;
 
-	public int numberInPool = 10;
+	int numberInPool = 10;
 	int numberOfTileTypes = 3;
 	List<Tile> cornerTiles; // pool of tiles
 	List<Tile> straightTiles;
 	List<Tile> crossTiles;
 
 	// pool of placeholder tiles
-	public int numberOfOpen = 20;
+	int numberOfOpen = 20;
 	List<Tile> openTiles;
 
 	float tileSize = 3f; // length of one edge
 	Vector3 north, south, east, west; // positions around the tile
 
+	Vector3 origin;
+
+	//-------- spoon management -------------------------------------------------
+	public Text spoonDisplay;
+	int maxSpoons;
+	int numberOfSpoons;
+	int spoonsUsedPerTile = 2;
+	int regenTime = 15;
+	IEnumerator regenSpoon;
+
+//===============================================================================
 	// Use this for initialization
 	void Start () {
 
-		// instantiate object pool
+		//-------instantiate object pool--------------------
 		cornerTiles = new List<Tile> ();
 		straightTiles = new List<Tile> ();
 		crossTiles = new List<Tile> ();
@@ -66,12 +78,20 @@ public class GameManager : MonoBehaviour {
 		}
 
 		// For beginning tile show active edges
-		showTilePlaces(start);
+		ShowTilePlaces(start);
 		currentTile = start;
 		prevTile = start;
+
+		origin = new Vector3 (0f,0f,0f);
+		//------------- spoon management ---------------------------
+		maxSpoons = 6;
+		numberOfSpoons = maxSpoons;
+		regenSpoon = RegenSpoons ();
+		StartCoroutine (regenSpoon);
 	}
 
-	public void showTilePlaces (Tile currTile){
+// -------------------- TILE MANAGEMENT -----------------------------------------
+	public void ShowTilePlaces (Tile currTile){
 		// show possible positions of next tile based on current tile type
 		//set the positions around the tile
 		// written so that the positions are in respect to the current rotation
@@ -193,8 +213,9 @@ public class GameManager : MonoBehaviour {
 //		MakeTile(straightTiles, tileClicked.transform.position);
 		Debug.Log ("current tile in Settile: " + currentTile);
 		tileClicked.gameObject.SetActive (false); // must be before showTilePlaces so there will be tiles in the pool
-		showTilePlaces (currentTile);
+		ShowTilePlaces (currentTile);
 	}
+
 
 	public void MakeTile (List<Tile> tileList, Vector3 tilePosition){
 		// Get the next tile object from its list
@@ -241,9 +262,66 @@ public class GameManager : MonoBehaviour {
 		// it should turn off the open tile placeholder and reshow it
 		lastOpenTile.gameObject.SetActive(false);
 		//make sure to remove from previous position after deactivation
-		lastOpenTile.gameObject.transform.position = new Vector3 (0f,0f,0f); 
+		lastOpenTile.gameObject.transform.position = origin; 
 
-		showTilePlaces (currentTile);
+		ShowTilePlaces (currentTile);
 	}
+
+	public void DestroyTile(){
+		// deactivate oldest tile of tile type nextTiles
+		for (int i = 0; i < nextTiles.Count; i++) {
+			if (nextTiles [i].gameObject.activeInHierarchy) {
+				nextTiles [i].gameObject.SetActive (false);
+				nextTiles [i].gameObject.transform.position = origin;
+			}
+		}
+		
+	}
+		
+// -------------- SPOON MANAGEMENT ------------------------------------------
+
+	public void UseSpoons ( int spoonsUsed ) {
+		// subtract spoonsUsed from inventory of spoons
+		if (numberOfSpoons > 0) {
+			numberOfSpoons = numberOfSpoons - spoonsUsed;
+			spoonDisplay.text = "Spoons: " + numberOfSpoons;
+		}
+	}
+
+	public void CheckSpoons ( Tile tileClicked ) {
+		// check that there are enough spoons to set a tile before setting a tile
+		if (numberOfSpoons - spoonsUsedPerTile >= 0) {
+			SetTile (tileClicked);
+			UseSpoons (spoonsUsedPerTile);
+		} else {
+			Debug.Log ("not enough spoons!");
+		}
+	}
+
+	public void addSpoons (int spoonsAdded ){
+		if (spoonsAdded > 0 && numberOfSpoons <= maxSpoons) {
+			for (int i = 0; i < spoonsAdded; i++) {
+				numberOfSpoons = numberOfSpoons + 1;
+			}
+		}
+		spoonDisplay.text = "Spoons: " + numberOfSpoons;
+	}
+
+	public IEnumerator RegenSpoons (){
+		//every regenTime seconds, 
+		// regenerate a random number of spoons up to the max number
+		while (true) {
+			yield return new WaitForSeconds (regenTime);
+
+			int maxRange = maxSpoons - numberOfSpoons + 1;
+
+			int randomNumber = Random.Range (0, maxRange);
+
+			Debug.Log ("random spoons to add" + randomNumber);
+
+			addSpoons (randomNumber);
+		}
+	}
+		
 }
 	

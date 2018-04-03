@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour {
 	public Tile prevTile;
 	public Tile lastOpenTile;
 
-	int numberInPool = 10;
+	int numberInPool = 20;
 	int numberOfTileTypes = 3;
 	List<Tile> cornerTiles; // pool of tiles
 	List<Tile> straightTiles;
@@ -83,6 +83,8 @@ public class GameManager : MonoBehaviour {
 		prevTile = start;
 
 		origin = new Vector3 (0f,0f,0f);
+
+
 		//------------- spoon management ---------------------------
 		maxSpoons = 6;
 		numberOfSpoons = maxSpoons;
@@ -103,7 +105,7 @@ public class GameManager : MonoBehaviour {
 		east = currTile.transform.TransformPoint(tileSize*Vector3.left);
 
 		// start tile has 4 open edges
-		if (currTile.tileType == "start" || currTile.tileType == "cross") {
+		if (currTile.tileType == "start") {
 			MakeTile(openTiles, north);
 			MakeTile(openTiles, south);
 			MakeTile(openTiles, east);
@@ -160,6 +162,7 @@ public class GameManager : MonoBehaviour {
 			Debug.Log ("west" + westIsOccupied);
 
 			if (!northIsOccupied) {
+				Debug.Log ("making north open tile" + !northIsOccupied);
 				MakeTile (openTiles, north);
 			}
 			if (!southIsOccupied) {
@@ -206,12 +209,24 @@ public class GameManager : MonoBehaviour {
 		// set the next tile into the clicked position
 		//get next generated tile here TBD
 		prevTile = currentTile;
-		Debug.Log ("previous tile: " + prevTile);
 
 		GenerateNextTile ();
+
+		// if reached the last object in pool, 
+		// start deactivating tiles from the beginning
+		if (nextTiles [nextTiles.Count-1].gameObject.activeInHierarchy) {
+			DestroyTile ();
+		}
+			
 		MakeTile(nextTiles, tileClicked.transform.position); //sets new current tile
 //		MakeTile(straightTiles, tileClicked.transform.position);
-		Debug.Log ("current tile in Settile: " + currentTile);
+
+		// need to deactivate and reset open tiles after MakeTile to pass the right position into MakeTile
+		if (openTiles [openTiles.Count - 1].gameObject.activeInHierarchy) {
+			DestroySomeOpenTiles ();
+		}
+
+		// deactivate open tile
 		tileClicked.gameObject.SetActive (false); // must be before showTilePlaces so there will be tiles in the pool
 		ShowTilePlaces (currentTile);
 	}
@@ -268,14 +283,27 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void DestroyTile(){
-		// deactivate oldest tile of tile type nextTiles
+		// deactivate oldest tile of tile type nextTiles and openTiles
 		for (int i = 0; i < nextTiles.Count; i++) {
 			if (nextTiles [i].gameObject.activeInHierarchy) {
 				nextTiles [i].gameObject.SetActive (false);
 				nextTiles [i].gameObject.transform.position = origin;
+				break;
 			}
 		}
-		
+	}
+
+	public void DestroySomeOpenTiles (){
+		// deactivate 3 old open tiles at a time
+		for (int i = 0; i < openTiles.Count; i++) {
+			if (openTiles [i].gameObject.activeInHierarchy) {
+				for (int j=0; j<3; j++){
+					openTiles [i+j].gameObject.SetActive (false);
+					openTiles [i+j].gameObject.transform.position = origin;
+				}
+				break;
+			}
+		}
 	}
 		
 // -------------- SPOON MANAGEMENT ------------------------------------------

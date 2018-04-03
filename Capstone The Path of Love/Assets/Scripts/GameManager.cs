@@ -17,12 +17,6 @@ public class GameManager : MonoBehaviour {
 	public Tile cross;
 	public Tile open;
 
-	public Tile start;
-	public Tile currentTile;
-	public List<Tile> nextTiles;
-	public Tile prevTile;
-	public Tile lastOpenTile;
-
 	int numberInPool = 20;
 	int numberOfTileTypes = 3;
 	List<Tile> cornerTiles; // pool of tiles
@@ -33,7 +27,13 @@ public class GameManager : MonoBehaviour {
 	int numberOfOpen = 20;
 	List<Tile> openTiles;
 
-	float tileSize = 3f; // length of one edge
+	public Tile start;
+	public Tile currentTile;
+	public List<Tile> nextTiles;
+	public Tile prevTile;
+	public Tile lastOpenTile;
+
+	public float tileSize = 3f; // length of one edge
 	Vector3 north, south, east, west; // positions around the tile
 
 	Vector3 origin;
@@ -305,7 +305,6 @@ public class GameManager : MonoBehaviour {
 			}
 		}
 	}
-		
 // -------------- SPOON MANAGEMENT ------------------------------------------
 
 	public void UseSpoons ( int spoonsUsed ) {

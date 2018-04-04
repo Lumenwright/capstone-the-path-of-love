@@ -11,8 +11,9 @@ public class SpawnDestination : MonoBehaviour {
 	public GameObject end;
 
 	public Vector3 position1;
+	public Vector3 position2;
 
-	// how far aawy from the start, in tiles, can the destination be at most
+	// how far away from the start, in tiles, can the destination be at most
 	int GameSize = 10;
 	float tileSize;
 
@@ -20,20 +21,29 @@ public class SpawnDestination : MonoBehaviour {
 	void Start () {
 		tileSize = gm.tileSize;
 
-//		int randomStepsx = Random.Range (-1 * GameSize, GameSize); // number of tiles away from start
-		int randomStepsx = 3;
-		int randomStepsy = 4;
-		float distanceNorth = randomStepsy * tileSize;
-		float distanceEast = randomStepsx * tileSize;
-
-		position1 = new Vector3 (distanceNorth, 0, distanceEast);
-		GameObject.Instantiate (doctor);
+		// spawn the destinations at generated coordinates
+		position1 = GeneratePositionCoordinates ();
 		doctor.transform.position = position1;
+
+		position2 = GeneratePositionCoordinates ();
+		end.transform.position = position2;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
+	}
+
+	Vector3 GeneratePositionCoordinates (){
+		// generate positions for the destinations relative to start tile
+		int randomStepsx = Random.Range (-1 * GameSize, GameSize); // number of tiles away from start
+		int randomStepsy = Random.Range (-1 * GameSize, GameSize);
+		float distanceNorth = randomStepsy * tileSize;
+		float distanceEast = randomStepsx * tileSize;
+
+		Vector3 position = new Vector3 (distanceNorth, 0, distanceEast);
+
+		return position;
 	}
 
 	// randomly generate the position of the destination

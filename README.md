@@ -7,6 +7,9 @@ A tile maze game motivated by a story about love and patience with depression.
 ### Plugin
 - iTween by Pixel Placement http://u3d.as/1s9
 
+### Font
+- Julee
+
 ### Images/Textures
 - Fall foliage, a public domain photo
 - Scroll background, a public domain photo https://pixabay.com/en/scroll-paper-old-blank-old-paper-1033117/

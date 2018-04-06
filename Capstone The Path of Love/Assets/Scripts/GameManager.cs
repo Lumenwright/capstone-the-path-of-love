@@ -1,7 +1,9 @@
 ﻿// =============================================
 // Notes
 // - Current tile will always be last placed tile regardless of where the player is
+// - NSEW directions don't work when defined in the class  :((
 // - had to put in positions around tile in the function, not in the Tile class, to work (won't get correct position until after the function is done)
+// - oldestTileIndex is incremented independent of type of tile, so won't actually be oldest tile
 // =============================================
 
 using System.Collections;
@@ -17,7 +19,7 @@ public class GameManager : MonoBehaviour {
 	public Tile cross;
 	public Tile open;
 
-	int numberInPool = 20;
+	int numberInPool = 3;
 	int numberOfTileTypes = 3;
 	List<Tile> cornerTiles; // pool of tiles
 	List<Tile> straightTiles;
@@ -25,13 +27,14 @@ public class GameManager : MonoBehaviour {
 
 	// pool of placeholder tiles
 	int numberOfOpen = 20;
-	List<Tile> openTiles;
+	public List<Tile> openTiles;
 
 	public Tile start;
 	public Tile currentTile;
 	public List<Tile> nextTiles;
 	public Tile prevTile;
 	public Tile lastOpenTile;
+	int oldestTileIndex;
 
 	public float tileSize = 3f; // length of one edge
 	Vector3 north, south, east, west; // positions around the tile
@@ -40,15 +43,19 @@ public class GameManager : MonoBehaviour {
 
 	//-------- spoon management -------------------------------------------------
 	public Text spoonDisplay;
-	int maxSpoons;
-	int numberOfSpoons;
-	int spoonsUsedPerTile = 2;
+	public int maxSpoons;
+	public int numberOfSpoons;
+	public int spoonsUsedPerTile = 2;
 	int regenTime = 15;
 	IEnumerator regenSpoon;
+
+	public LoveNotes ln;
 
 //===============================================================================
 	// Use this for initialization
 	void Start () {
+		
+		oldestTileIndex = 0;
 
 		//-------instantiate object pool--------------------
 		cornerTiles = new List<Tile> ();
@@ -284,12 +291,21 @@ public class GameManager : MonoBehaviour {
 
 	public void DestroyTile(){
 		// deactivate oldest tile of tile type nextTiles and openTiles
-		for (int i = 0; i < nextTiles.Count; i++) {
-			if (nextTiles [i].gameObject.activeInHierarchy) {
-				nextTiles [i].gameObject.SetActive (false);
-				nextTiles [i].gameObject.transform.position = origin;
-				break;
-			}
+//		for (int i = 0; i < nextTiles.Count; i++) {
+//			if (nextTiles [i].gameObject.activeInHierarchy) {
+//				nextTiles [i].gameObject.SetActive (false);
+//				nextTiles [i].gameObject.transform.position = origin;
+//				break;
+//			}
+//		}
+
+		nextTiles [oldestTileIndex].gameObject.SetActive (false);
+		nextTiles [oldestTileIndex].gameObject.transform.position = origin;
+
+		if (oldestTileIndex + 1 < nextTiles.Count) {
+			oldestTileIndex++;
+		} else {
+			oldestTileIndex = 0;
 		}
 	}
 
@@ -322,6 +338,7 @@ public class GameManager : MonoBehaviour {
 			UseSpoons (spoonsUsedPerTile);
 		} else {
 			Debug.Log ("not enough spoons!");
+			ln.DropNote ();
 		}
 	}
 

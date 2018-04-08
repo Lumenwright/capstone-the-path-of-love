@@ -4,6 +4,7 @@
 // - NSEW directions don't work when defined in the class  :((
 // - had to put in positions around tile in the function, not in the Tile class, to work (won't get correct position until after the function is done)
 // - oldestTileIndex is incremented independent of type of tile, so won't actually be oldest tile
+// - energy used to be called spoons
 // =============================================
 
 using System.Collections;
@@ -19,7 +20,7 @@ public class GameManager : MonoBehaviour {
 	public Tile cross;
 	public Tile open;
 
-	int numberInPool = 3;
+	int numberInPool = 20;
 	int numberOfTileTypes = 3;
 	List<Tile> cornerTiles; // pool of tiles
 	List<Tile> straightTiles;
@@ -41,13 +42,13 @@ public class GameManager : MonoBehaviour {
 
 	Vector3 origin;
 
-	//-------- spoon management -------------------------------------------------
-	public Text spoonDisplay;
-	public int maxSpoons;
-	public int numberOfSpoons;
-	public int spoonsUsedPerTile = 2;
+	//-------- energy management -------------------------------------------------
+	public Text energyDisplay;
+	public int maxEnergys;
+	public int numberOfEnergys;
+	public int energysUsedPerTile = 2;
 	int regenTime = 15;
-	IEnumerator regenSpoon;
+	IEnumerator regenEnergy;
 
 	public LoveNotes ln;
 
@@ -92,11 +93,11 @@ public class GameManager : MonoBehaviour {
 		origin = new Vector3 (0f,0f,0f);
 
 
-		//------------- spoon management ---------------------------
-		maxSpoons = 6;
-		numberOfSpoons = maxSpoons;
-		regenSpoon = RegenSpoons ();
-		StartCoroutine (regenSpoon);
+		//------------- Energy management ---------------------------
+		maxEnergys = 6;
+		numberOfEnergys = maxEnergys;
+		regenEnergy = RegenEnergys ();
+		StartCoroutine (regenEnergy);
 	}
 
 // -------------------- TILE MANAGEMENT -----------------------------------------
@@ -321,49 +322,49 @@ public class GameManager : MonoBehaviour {
 			}
 		}
 	}
-// -------------- SPOON MANAGEMENT ------------------------------------------
+// -------------- Energy MANAGEMENT ------------------------------------------
 
-	public void UseSpoons ( int spoonsUsed ) {
-		// subtract spoonsUsed from inventory of spoons
-		if (numberOfSpoons > 0) {
-			numberOfSpoons = numberOfSpoons - spoonsUsed;
-			spoonDisplay.text = "Spoons: " + numberOfSpoons;
+	public void UseEnergys ( int energysUsed ) {
+		// subtract EnergysUsed from inventory of Energys
+		if (numberOfEnergys > 0) {
+			numberOfEnergys = numberOfEnergys - energysUsed;
+			energyDisplay.text = "Energy: " + numberOfEnergys;
 		}
 	}
 
-	public void CheckSpoons ( Tile tileClicked ) {
-		// check that there are enough spoons to set a tile before setting a tile
-		if (numberOfSpoons - spoonsUsedPerTile >= 0) {
+	public void CheckEnergys ( Tile tileClicked ) {
+		// check that there are enough energys to set a tile before setting a tile
+		if (numberOfEnergys - energysUsedPerTile >= 0) {
 			SetTile (tileClicked);
-			UseSpoons (spoonsUsedPerTile);
+			UseEnergys (energysUsedPerTile);
 		} else {
-			Debug.Log ("not enough spoons!");
+			Debug.Log ("not enough energys!");
 			ln.DropNote ();
 		}
 	}
 
-	public void addSpoons (int spoonsAdded ){
-		if (spoonsAdded > 0 && numberOfSpoons <= maxSpoons) {
-			for (int i = 0; i < spoonsAdded; i++) {
-				numberOfSpoons = numberOfSpoons + 1;
+	public void addEnergys (int energysAdded ){
+		if (energysAdded > 0 && numberOfEnergys <= maxEnergys) {
+			for (int i = 0; i < energysAdded; i++) {
+				numberOfEnergys = numberOfEnergys + 1;
 			}
 		}
-		spoonDisplay.text = "Spoons: " + numberOfSpoons;
+		energyDisplay.text = "Energy: " + numberOfEnergys;
 	}
 
-	public IEnumerator RegenSpoons (){
+	public IEnumerator RegenEnergys (){
 		//every regenTime seconds, 
-		// regenerate a random number of spoons up to the max number
+		// regenerate a random number of Energys up to the max number
 		while (true) {
 			yield return new WaitForSeconds (regenTime);
 
-			int maxRange = maxSpoons - numberOfSpoons + 1;
+			int maxRange = maxEnergys - numberOfEnergys + 1;
 
 			int randomNumber = Random.Range (0, maxRange);
 
-			Debug.Log ("random spoons to add" + randomNumber);
+			Debug.Log ("random energys to add" + randomNumber);
 
-			addSpoons (randomNumber);
+			addEnergys (randomNumber);
 		}
 	}
 		

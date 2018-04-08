@@ -44,8 +44,8 @@ public class SpawnDestination : MonoBehaviour {
 		}
 
 		// spawn open tiles
-		ShowTilePlaces(end, sizeOfDestinationEnd);
-		ShowTilePlaces(doctor, sizeOfDestinationDoctor);
+//		ShowTilePlaces(end, sizeOfDestinationEnd);
+//		ShowTilePlaces(doctor, sizeOfDestinationDoctor);
 
 	}
 
@@ -61,7 +61,7 @@ public class SpawnDestination : MonoBehaviour {
 		int randomStepsx = Random.Range (1, 3)==1 ? num1 : num2; // which side of origin to spawn at
 		int randomStepsy = Random.Range (1, 3)==1 ? num1 : num2;
 		float distanceNorth = randomStepsy * tileSize - 1.5f;
-		float distanceEast = randomStepsx * tileSize - 1.5f;
+		float distanceEast = randomStepsx * tileSize -1.5f;
 
 		Vector3 position = new Vector3 (distanceNorth, 0, distanceEast);
 
@@ -69,19 +69,19 @@ public class SpawnDestination : MonoBehaviour {
 	}
 
 
-	void ShowTilePlaces(GameObject obj, float size){
+//	void ShowTilePlaces(GameObject obj, float size){
 
-		float displace = (size + 1) * tileSize;
-
-		// show 4 little open tiles
-		Vector3 north = obj.transform.TransformPoint(displace*Vector3.forward);
-		Vector3 south = obj.transform.TransformPoint(displace*Vector3.forward*-1);
-		Vector3 west = obj.transform.TransformPoint(displace*Vector3.right);
-		Vector3 east = obj.transform.TransformPoint(displace*Vector3.left);
-
-		gm.MakeTile(openTiles, north);
-		gm.MakeTile(openTiles, south);
-		gm.MakeTile(openTiles, east);
-		gm.MakeTile(openTiles, west);
-	}
+//		float displace = (size + 1) * tileSize;
+//
+//		// show 4 little open tiles
+//		Vector3 north = obj.transform.TransformPoint( displace* new Vector3(0.3333f,0,1f));
+//		Vector3 south = obj.transform.TransformPoint( displace* new Vector3(0.3333f,0,1f)*-1f);
+//		Vector3 west = obj.transform.TransformPoint( displace* new Vector3(1f,0,0.3333f));
+//		Vector3 east = obj.transform.TransformPoint( displace* new Vector3(-1f, 0, -0.3333f));
+//
+//		gm.MakeTile(openTiles, north);
+//		gm.MakeTile(openTiles, south);
+//		gm.MakeTile(openTiles, east);
+//		gm.MakeTile(openTiles, west);
+//	}
 }

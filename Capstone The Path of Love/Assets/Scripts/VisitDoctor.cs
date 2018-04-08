@@ -14,11 +14,11 @@ public class VisitDoctor : MonoBehaviour {
 		collectedMeds = false;
 	}
 	
-	public void increaseMaxSpoons (){
+	public void increaseMaxEnergy (){
 		//when the Doctor destination is clicked, max spoons is increased.
 		// spoons are not refilled bc going to the doctor is hard.
 		if (!collectedMeds) {
-			gm.maxSpoons = 18;
+			gm.maxEnergys = 18;
 			collectedMeds = true;
 		}
 	}

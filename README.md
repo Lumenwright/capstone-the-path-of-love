@@ -21,3 +21,4 @@ RPG Tavern Pack by FireBolt Studios https://assetstore.unity.com/packages/3d/pro
 Old Scroll by Bondiana https://assetstore.unity.com/packages/3d/props/old-scroll-33919
 Books by Vis Games https://assetstore.unity.com/packages/3d/props/interior/books-3356
 CorcraProps Furniture Lite by Corcra Studio https://assetstore.unity.com/packages/3d/props/corcraprops-furniture-lite-80583
+-Female Warrior Princess by All * Star Characters https://assetstore.unity.com/packages/3d/characters/humanoids/female-warrior-princess-44041

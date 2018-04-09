@@ -1,6 +1,0 @@
-Anna
-
-How big are you compared to the scene? Life sized. I felt like i was in a garden?
-Can you identify the interactive objects in the scene and what they o? Figured out when the dot becomes an empty circle, it's something I can click on.  Clicking on an empty blue tile gives me a new piece of ?land.  clicking on the pieces can rotate them.  Eventually figured out the blue balls floating above actually moves you to the space, totally thought for the first bit that it deletes pieces (since it moves you forward it looks like a piece got taken off). Couldn't figure out what the Spoon number meant or what the goal of the game is..initially thought I needed to complete a path but then I could keep adding more land
-Any glitches/bugs?  Just the above moving vs. deleting thing. And not sure if you meant for some of the pieces to not be click/rotatable and some of the floating blue balls to not be clickable.  Also there's a white ball in the sky that I can't do anything with?
-Other comments or suggestions?  I assume this is the beginning phase of the project? The goal for the player is not too clear.

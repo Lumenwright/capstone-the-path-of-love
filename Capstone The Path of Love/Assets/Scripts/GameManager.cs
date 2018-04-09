@@ -279,16 +279,30 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-	public void RotateTile(){
+//	public void RotateTile(){
+//		//rotates the current tile, and remakes associated open tiles.
+//		currentTile.transform.Rotate(new Vector3 (0, 0, 90));
+//
+//		// it should turn off the open tile placeholder and reshow it
+//		lastOpenTile.gameObject.SetActive(false);
+//		//make sure to remove from previous position after deactivation
+//		lastOpenTile.gameObject.transform.position = origin; 
+//
+//		ShowTilePlaces (currentTile);
+//	}
+
+	public void RotateTile(Tile tileClicked){
 		//rotates the current tile, and remakes associated open tiles.
-		currentTile.transform.Rotate(new Vector3 (0, 0, 90));
+		tileClicked.transform.Rotate(new Vector3 (0, 0, 90));
 
-		// it should turn off the open tile placeholder and reshow it
-		lastOpenTile.gameObject.SetActive(false);
-		//make sure to remove from previous position after deactivation
-		lastOpenTile.gameObject.transform.position = origin; 
+		if (tileClicked == currentTile) {
+			// it should turn off the open tile placeholder and reshow it
+			lastOpenTile.gameObject.SetActive (false);
+			//make sure to remove from previous position after deactivation
+			lastOpenTile.gameObject.transform.position = origin; 
 
-		ShowTilePlaces (currentTile);
+			ShowTilePlaces (currentTile);
+		}
 	}
 
 	public void DestroyTile(){

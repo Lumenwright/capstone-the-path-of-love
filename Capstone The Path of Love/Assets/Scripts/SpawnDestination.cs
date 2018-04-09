@@ -31,12 +31,13 @@ public class SpawnDestination : MonoBehaviour {
 
 		// spawn the destinations at generated coordinates
 		position1 = GeneratePositionCoordinates (sizeOfDestinationDoctor);
-		doctor.transform.position = position1;
 
 		position2 = GeneratePositionCoordinates (sizeOfDestinationEnd);
-		while (position1 == position2) { // if they are the same coordinate, make a new one
+
+		while (doCoordinatesOverlap(position1,position2, sizeOfDestinationDoctor, sizeOfDestinationEnd)) { // if they are the same coordinate, make a new one
 			position2 = GeneratePositionCoordinates (sizeOfDestinationEnd);
 		}
+		doctor.transform.position = position1;
 		end.transform.position = position2;
 
 		// make 4 open tiles
@@ -91,4 +92,16 @@ public class SpawnDestination : MonoBehaviour {
 //		gm.MakeTile(openTiles, east);
 //		gm.MakeTile(openTiles, west);
 //	}
+
+	bool doCoordinatesOverlap(Vector3 pos1, Vector3 pos2, float size1, float size2){
+		float max = (size1 + size2) * tileSize;
+		float x = Mathf.Abs (pos1.x - pos2.x);
+		float z = Mathf.Abs (pos1.z - pos2.z);
+
+		if (x < max || z < max) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class VisitDoctor : MonoBehaviour {
+	// Actions attached to the "doctor" destination
 
 	public GameManager gm;
 

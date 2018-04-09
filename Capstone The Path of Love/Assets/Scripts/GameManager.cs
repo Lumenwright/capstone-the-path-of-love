@@ -1,8 +1,9 @@
 ﻿// =============================================
+// This class deals mostly with the small game tiles and amount of energy used to set the tiles.
+//
 // Notes
 // - Current tile will always be last placed tile regardless of where the player is
-// - NSEW directions don't work when defined in the class  :((
-// - had to put in positions around tile in the function, not in the Tile class, to work (won't get correct position until after the function is done)
+// - had to put in positions around tile (NSEW) in the function, not in the Tile class, to work (won't get correct position until after the function is done)
 // - oldestTileIndex is incremented independent of type of tile, so won't actually be oldest tile
 // - energy used to be called spoons
 // =============================================

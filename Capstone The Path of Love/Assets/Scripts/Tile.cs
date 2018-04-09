@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Tile : MonoBehaviour {
+	//Class attached to small game tiles
 
 	public string tileType = "cross";
 

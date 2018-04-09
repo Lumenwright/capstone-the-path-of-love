@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿// Note: ShowOpenTiles() kept getting in the way of incoming tiles.
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,11 +15,11 @@ public class SpawnDestination : MonoBehaviour {
 	public Vector3 position1;
 	public Vector3 position2;
 
-	float sizeOfDestinationDoctor = 1.5f; 
-	float sizeOfDestinationEnd = 0.5f; 
+	float sizeOfDestinationDoctor = 3f; 
+	float sizeOfDestinationEnd = 1f; 
 
 	// how far away from the start, in tiles, can the destination be at most
-	int gameSize = 15; //length of grid in tiles
+	int gameSize = 4; //half length of grid in tiles
 	float tileSize; 
 
 	public Tile openTile;
@@ -32,6 +34,9 @@ public class SpawnDestination : MonoBehaviour {
 		doctor.transform.position = position1;
 
 		position2 = GeneratePositionCoordinates (sizeOfDestinationEnd);
+		while (position1 == position2) { // if they are the same coordinate, make a new one
+			position2 = GeneratePositionCoordinates (sizeOfDestinationEnd);
+		}
 		end.transform.position = position2;
 
 		// make 4 open tiles
@@ -53,15 +58,17 @@ public class SpawnDestination : MonoBehaviour {
 	Vector3 GeneratePositionCoordinates (float length){
 		// randomly generate positions for the destinations relative to start tile
 
-		int size = (int)length * 2;
+		int size = (int)length;
 
 		// number of tiles away from start
 		int num1 = Random.Range(-1*gameSize, -1*size);
 		int num2 = Random.Range (size, gameSize);
-		int randomStepsx = Random.Range (1, 3)==1 ? num1 : num2; // which side of origin to spawn at
+		int randomStepsx = Random.Range (1, 3)==1 ? num1 : num2; // flip coin which side of origin to spawn at
 		int randomStepsy = Random.Range (1, 3)==1 ? num1 : num2;
-		float distanceNorth = randomStepsy * tileSize - 1.5f;
-		float distanceEast = randomStepsx * tileSize -1.5f;
+
+		// convert to world coordinates
+		float distanceNorth = randomStepsy * tileSize + 1.5f;
+		float distanceEast = randomStepsx * tileSize +1.5f;
 
 		Vector3 position = new Vector3 (distanceNorth, 0, distanceEast);
 

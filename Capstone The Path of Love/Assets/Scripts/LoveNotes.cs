@@ -21,6 +21,8 @@ public class LoveNotes : MonoBehaviour {
 
 	public GameObject mainCamera;
 
+	public AudioClip scrollAppearSound;
+
 	// Use this for initialization
 	void Start () {
 		messages = new List<string>();
@@ -42,17 +44,11 @@ public class LoveNotes : MonoBehaviour {
 		scroll.SetActive (false);
 	}
 
-//	public void CheckSpoonNumber (){
-		// if not enough spoons, drop a note
-//		if (gm.numberOfSpoons - gm.spoonsUsedPerTile <= 0) {
-//			DropNote ();
-//		}
-//	}
-
 	// drop note (add physics component to scroll)
 	public void DropNote (){
 		scroll.transform.position = mainCamera.transform.position + mainCamera.transform.forward;
 		scroll.SetActive (true);
+		scroll.GetComponent<GvrAudioSource> ().PlayOneShot (scrollAppearSound, 0.3f);
 	}
 
 	// set message in the note
@@ -66,7 +62,7 @@ public class LoveNotes : MonoBehaviour {
 		messages.Add ("Get some rest. \n Celeste");
 		messages.Add ("I know you're feeling frustrated right now, but let yourself recharge. Meditate. \n Celeste");
 		messages.Add ("I grant you royal permission to work at your own pace. Take care of yourself. \n Celeste");
-		messages.Add ("You're not lazy. You just have less spoons than other mages. Ask for help. \n Celeste");
+		messages.Add ("You're not lazy. You just have less energy than other mages. Go get help. \n Celeste");
 		messages.Add ("You're worth it. Trust me. I wish you could see what I see in you. \n Celeste");
 		messages.Add ("Your eyes are like Lake Clarica under the stars. \n Celeste");
 		messages.Add ("I love your poem. You may think it's not good enough but you're good enough for me. \n Celeste");

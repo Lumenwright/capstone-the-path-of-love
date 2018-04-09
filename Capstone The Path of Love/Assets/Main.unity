@@ -1386,22 +1386,11 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1838933443}
-          m_MethodName: CheckSpoons
+          m_MethodName: CheckEnergys
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 271533005}
             m_ObjectArgumentAssemblyTypeName: Tile, Assembly-CSharp
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 1838933444}
-          m_MethodName: CheckSpoonNumber
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -1582,6 +1571,7 @@ GameObject:
   - component: {fileID: 347602351}
   - component: {fileID: 347602352}
   - component: {fileID: 347602353}
+  - component: {fileID: 347602354}
   m_Layer: 0
   m_Name: doctor
   m_TagString: Untagged
@@ -1663,11 +1653,35 @@ MonoBehaviour:
             m_BoolArgument: 1
           m_CallState: 2
         - m_Target: {fileID: 347602353}
-          m_MethodName: increaseMaxSpoons
+          m_MethodName: increaseMaxEnergy
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 347602354}
+          m_MethodName: PlayOneShot
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 8300000, guid: 70d6debd133f38c4cbcdd8ee71eccc66,
+              type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 347602354}
+          m_MethodName: PlayOneShot
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 8300000, guid: 44b5f6281e312f94ea47230a29111571,
+              type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -1689,6 +1703,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gm: {fileID: 1838933443}
   collectedMeds: 0
+--- !u!114 &347602354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 347602349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dbca64e524ea44f9b26142ec59aca8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bypassRoomEffects: 1
+  directivityAlpha: 0
+  directivitySharpness: 1
+  listenerDirectivityAlpha: 0
+  listenerDirectivitySharpness: 1
+  gainDb: 0
+  occlusionEnabled: 0
+  playOnAwake: 0
+  sourceClip: {fileID: 8300000, guid: 44b5f6281e312f94ea47230a29111571, type: 3}
+  sourceLoop: 0
+  sourceMute: 0
+  sourcePitch: 1
+  sourcePriority: 128
+  sourceSpatialBlend: 1
+  sourceDopplerLevel: 1
+  sourceSpread: 0
+  sourceVolume: 0.702
+  sourceRolloffMode: 0
+  sourceMaxDistance: 500
+  sourceMinDistance: 1
+  hrtfEnabled: 1
+  audioSource: {fileID: 0}
 --- !u!1 &360347091
 GameObject:
   m_ObjectHideFlags: 0
@@ -14000,7 +14047,7 @@ GameObject:
   - component: {fileID: 1100555340}
   - component: {fileID: 1100555339}
   m_Layer: 5
-  m_Name: SpoonNumber
+  m_Name: EnergyNumber
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14038,7 +14085,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Spoons: 6'
+  m_Text: 'Energy: 6'
 --- !u!222 &1100555340
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -14125,6 +14172,7 @@ GameObject:
   - component: {fileID: 1135563841}
   - component: {fileID: 1135563840}
   - component: {fileID: 1135563844}
+  - component: {fileID: 1135563845}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -14211,6 +14259,22 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   maxRaycastHits: 64
+--- !u!114 &1135563845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1135563839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1156c073149742478887bb24456f32d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  globalGainDb: 0
+  occlusionMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  quality: 2
 --- !u!1 &1138665627
 GameObject:
   m_ObjectHideFlags: 0
@@ -16487,10 +16551,10 @@ MonoBehaviour:
   prevTile: {fileID: 0}
   lastOpenTile: {fileID: 0}
   tileSize: 3
-  spoonDisplay: {fileID: 1100555339}
-  maxSpoons: 0
-  numberOfSpoons: 0
-  spoonsUsedPerTile: 2
+  energyDisplay: {fileID: 1100555339}
+  maxEnergys: 0
+  numberOfEnergys: 0
+  energysUsedPerTile: 2
   ln: {fileID: 1838933444}
 --- !u!114 &1838933444
 MonoBehaviour:
@@ -16508,6 +16572,7 @@ MonoBehaviour:
   note: {fileID: 194835697}
   message: {fileID: 673599310}
   mainCamera: {fileID: 1135563839}
+  scrollAppearSound: {fileID: 8300000, guid: 4fdc0133703ba5a41b8b1459d267ba64, type: 3}
 --- !u!114 &1838933445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16519,6 +16584,68 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48049353ed42f484086c5faf4590984f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1842964532
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1842964533}
+  - component: {fileID: 1842964534}
+  m_Layer: 0
+  m_Name: MainAudio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1842964533
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1842964532}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1862097886}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1842964534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1842964532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dbca64e524ea44f9b26142ec59aca8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bypassRoomEffects: 1
+  directivityAlpha: 0
+  directivitySharpness: 1
+  listenerDirectivityAlpha: 0
+  listenerDirectivitySharpness: 1
+  gainDb: 0
+  occlusionEnabled: 0
+  playOnAwake: 1
+  sourceClip: {fileID: 8300000, guid: fd4781ab3e4b5744598de85c9ecaa00e, type: 3}
+  sourceLoop: 1
+  sourceMute: 0
+  sourcePitch: 1
+  sourcePriority: 128
+  sourceSpatialBlend: 1
+  sourceDopplerLevel: 1
+  sourceSpread: 0
+  sourceVolume: 0.115
+  sourceRolloffMode: 0
+  sourceMaxDistance: 500
+  sourceMinDistance: 1
+  hrtfEnabled: 0
+  audioSource: {fileID: 0}
 --- !u!1 &1848906308
 GameObject:
   m_ObjectHideFlags: 0
@@ -16561,6 +16688,7 @@ GameObject:
   - component: {fileID: 1848958715}
   - component: {fileID: 1848958716}
   - component: {fileID: 1848958717}
+  - component: {fileID: 1848958718}
   m_Layer: 0
   m_Name: scroll
   m_TagString: Untagged
@@ -16682,6 +16810,39 @@ MonoBehaviour:
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
+--- !u!114 &1848958718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1848958711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dbca64e524ea44f9b26142ec59aca8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bypassRoomEffects: 0
+  directivityAlpha: 0
+  directivitySharpness: 1
+  listenerDirectivityAlpha: 0
+  listenerDirectivitySharpness: 1
+  gainDb: 0
+  occlusionEnabled: 0
+  playOnAwake: 0
+  sourceClip: {fileID: 0}
+  sourceLoop: 0
+  sourceMute: 0
+  sourcePitch: 1
+  sourcePriority: 128
+  sourceSpatialBlend: 1
+  sourceDopplerLevel: 1
+  sourceSpread: 0
+  sourceVolume: 1
+  sourceRolloffMode: 0
+  sourceMaxDistance: 500
+  sourceMinDistance: 1
+  hrtfEnabled: 1
+  audioSource: {fileID: 0}
 --- !u!1001 &1862097885
 Prefab:
   m_ObjectHideFlags: 0
@@ -16901,7 +17062,7 @@ Prefab:
     - target: {fileID: 114000012580750942, guid: 1cbb647e224e9464abf789dccae45c7a,
         type: 2}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4000012543586472, guid: 1cbb647e224e9464abf789dccae45c7a, type: 2}
       propertyPath: m_LocalPosition.x
@@ -16939,7 +17100,7 @@ Prefab:
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 3d992815a28fc5e4fbc694527c79235b, type: 2}
+      objectReference: {fileID: 2100000, guid: 8106b9990341d924097375ab7232abb7, type: 2}
     - target: {fileID: 4000012543586472, guid: 1cbb647e224e9464abf789dccae45c7a, type: 2}
       propertyPath: m_LocalScale.x
       value: 0.04379667
@@ -17030,6 +17191,36 @@ Prefab:
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 114000012580750942, guid: 1cbb647e224e9464abf789dccae45c7a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012580750942, guid: 1cbb647e224e9464abf789dccae45c7a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012580750942, guid: 1cbb647e224e9464abf789dccae45c7a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 2006795997}
+    - target: {fileID: 114000012580750942, guid: 1cbb647e224e9464abf789dccae45c7a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: PlayOneShot
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012580750942, guid: 1cbb647e224e9464abf789dccae45c7a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.AudioClip, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012580750942, guid: 1cbb647e224e9464abf789dccae45c7a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 8300000, guid: c63c6133385121f418f9c93818002877, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1cbb647e224e9464abf789dccae45c7a, type: 2}
   m_IsPrefabParent: 0
@@ -17038,6 +17229,39 @@ GameObject:
   m_PrefabParentObject: {fileID: 1000010374830658, guid: 1cbb647e224e9464abf789dccae45c7a,
     type: 2}
   m_PrefabInternal: {fileID: 2006795995}
+--- !u!114 &2006795997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2006795996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dbca64e524ea44f9b26142ec59aca8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bypassRoomEffects: 0
+  directivityAlpha: 0
+  directivitySharpness: 1
+  listenerDirectivityAlpha: 0
+  listenerDirectivitySharpness: 1
+  gainDb: 0
+  occlusionEnabled: 0
+  playOnAwake: 0
+  sourceClip: {fileID: 0}
+  sourceLoop: 0
+  sourceMute: 0
+  sourcePitch: 1
+  sourcePriority: 128
+  sourceSpatialBlend: 1
+  sourceDopplerLevel: 1
+  sourceSpread: 0
+  sourceVolume: 0.2
+  sourceRolloffMode: 0
+  sourceMaxDistance: 500
+  sourceMinDistance: 1
+  hrtfEnabled: 0
+  audioSource: {fileID: 0}
 --- !u!1001 &2026236770
 Prefab:
   m_ObjectHideFlags: 0

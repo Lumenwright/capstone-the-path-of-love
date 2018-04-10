@@ -1,7 +1,37 @@
 # The Path of Love
 # Capstone project by Rose Chung
 
-A tile maze game motivated by a story about love and patience with depression.
+A tile maze game for Google Cardboard motivated by a story about love, patience, and persevering with depression. The game is designed to be a bit frustrating and tedious to do simple tasks despite sunny positivity and support, like life with a mental illness like depression.
+
+[Read the full writeup at my Medium.](https://medium.com/@Lumenwright)
+
+This project was produced to partially fulfill the requirements of [Udacity](https://www.udacity.com "Udacity - Be in demand")'s [VR Developer Nanodegree](https://www.udacity.com/course/vr-developer-nanodegree--nd017).
+
+## Planning
+[The planning document can by found at my blog.](https://roseadastra.wordpress.com/2018/04/09/capstone-the-path-of-love-planning/)
+
+## Video walkthrough
+- https://youtu.be/kZopE1iP6DY
+
+## User testing notes
+- https://roseadastra.wordpress.com/2018/04/09/capstone-user-test-results/
+
+## Targetted Achievements
+### Fundamentals (600)
+- Scale: human with human-sized structures
+- Animation: the sign outside the house door swings when you click on it
+- Lighting: baked in the interior start scene and real time with baked ambient lighting in the main game
+- Locomotion: generated waypoints
+- Physics: in the main scene, a scroll appears and bounces on the ground
+- Empathy: living with a mental illness
+
+### Completeness (750)
+- Diegectic UI: controls should be intuitive
+- Alternative Storyline: there are 2 possible endings
+- 3D Modeling: the small tiles and bushes are made by the author in Blender and GIMP
+
+### Challenges (500)
+- User Testing
 
 ## Attributions
 ### Audio

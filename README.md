@@ -3,7 +3,7 @@
 
 A tile maze game for Google Cardboard motivated by a story about love, patience, and persevering with depression. The game is designed to be a bit frustrating and tedious to do simple tasks despite sunny positivity and support, like life with a mental illness like depression.
 
-[Read the full writeup at my Medium.](https://medium.com/@Lumenwright)
+[Read the full writeup at my Medium.](https://medium.com/@Lumenwright/the-path-of-love-capstone-for-udacity-vr-developer-nanodegree-61fcbdf77b21)
 
 This project was produced to partially fulfill the requirements of [Udacity](https://www.udacity.com "Udacity - Be in demand")'s [VR Developer Nanodegree](https://www.udacity.com/course/vr-developer-nanodegree--nd017).
 
@@ -16,7 +16,7 @@ This project was produced to partially fulfill the requirements of [Udacity](htt
 ## User testing notes
 - https://roseadastra.wordpress.com/2018/04/09/capstone-user-test-results/
 
-## Targetted Achievements
+## Targeted Achievements
 ### Fundamentals (600)
 - Scale: human with human-sized structures
 - Animation: the sign outside the house door swings when you click on it

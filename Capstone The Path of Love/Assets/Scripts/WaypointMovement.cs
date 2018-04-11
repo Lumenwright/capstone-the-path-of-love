@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Collections;
 
 public class WaypointMovement : MonoBehaviour {
+	// move player to waypoint when waypoint is clicked
 	
 	public GameObject player;
 

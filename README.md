@@ -1,7 +1,7 @@
 # The Path of Love
 # Capstone project by Rose Chung
 
-A tile maze game for Google Cardboard motivated by a story about love, patience, and persevering with depression. The game is designed to be a bit frustrating and tedious to do simple tasks despite sunny positivity and support, like life with a mental illness like depression.
+A tile maze game for Google Cardboard motivated by a story about love, patience, and persevering with depression. The game is designed to evoke emotions of frustration at not being able to do simple tasks despite sunny positivity and support, like life with a mental illness like depression. The game is also designed to evoke emotions of being uplifting and understanding of yourself and being compassionate about your own limits.
 
 [Read the full writeup at my Medium.](https://medium.com/@Lumenwright/the-path-of-love-capstone-for-udacity-vr-developer-nanodegree-61fcbdf77b21)
 
@@ -10,28 +10,31 @@ This project was produced to partially fulfill the requirements of [Udacity](htt
 ## Planning
 [The planning document can by found at my blog.](https://roseadastra.wordpress.com/2018/04/09/capstone-the-path-of-love-planning/)
 
+## Achievements video
+- https://youtu.be/U6m6XMGKXe4
+
 ## Video walkthrough
-- https://youtu.be/kZopE1iP6DY
+- https://youtu.be/92QxVTYS91g
 
 ## User testing notes
 - https://roseadastra.wordpress.com/2018/04/09/capstone-user-test-results/
 
 ## Targeted Achievements
 ### Fundamentals (600)
-- Scale: human with human-sized structures
-- Animation: the sign outside the house door swings when you click on it
-- Lighting: baked in the interior start scene and real time with baked ambient lighting in the main game
-- Locomotion: generated waypoints
-- Physics: in the main scene, a scroll appears and bounces on the ground
-- Empathy: living with a mental illness
+- Scale (100): human with human-sized structures
+- Animation (100): the sign outside the house door swings when you click on it
+- Lighting (100): baked in the interior start scene and real time with baked ambient lighting in the main game
+- Locomotion (100): generated waypoints
+- Physics (100): in the main scene, a scroll appears and bounces on the ground
+- Empathy (100): living with a mental illness
 
 ### Completeness (750)
-- Diegectic UI: controls should be intuitive
-- Alternative Storyline: there are 2 possible endings
-- 3D Modeling: the small tiles and bushes are made by the author in Blender and GIMP
+- Diegectic UI (250): controls should be intuitive
+- Alternative Storyline (250): there are 2 possible endings
+- 3D Modeling (250): the small tiles and bushes are made by the author in Blender and GIMP
 
 ### Challenges (500)
-- User Testing
+- User Testing (250 x 2): https://roseadastra.wordpress.com/2018/04/09/capstone-user-test-results/ (it's not really something suitable for video?)
 
 ## Attributions
 ### Audio
